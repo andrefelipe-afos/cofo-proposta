@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COFO — Crypto Offshore Family Office | Proposta</title>
+
+    <!-- Open Graph / Link Preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://andrefelipe-afos.github.io/cofo-proposta/">
+    <meta property="og:title" content="COFO — Crypto Offshore Family Office">
+    <meta property="og:description" content="Uma forma moderna de proteger e controlar seu patrimônio. Controle direto, sem intermediários, com estrutura internacional e carteiras digitais.">
+    <meta property="og:image" content="https://andrefelipe-afos.github.io/cofo-proposta/og-image-cofo.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="pt_BR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="COFO — Crypto Offshore Family Office">
+    <meta name="twitter:description" content="Uma forma moderna de proteger e controlar seu patrimônio. Controle direto, sem intermediários, com estrutura internacional.">
+    <meta name="twitter:image" content="https://andrefelipe-afos.github.io/cofo-proposta/og-image-cofo.svg">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fb;
+            --bg-card: #f4f5f7;
+            --accent-blue: #2563eb;
+            --accent-purple: #7c3aed;
+            --accent-green: #16a34a;
+            --accent-orange: #ea580c;
+            --accent-pink: #db2777;
+            --accent-cyan: #0891b2;
+            --accent-yellow: #ca8a04;
+            --accent-sapphire: #0F52BA;
+            --accent-red: #DC2626;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --border-strong: #d1d5db;
+            --gradient-1: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            --gradient-2: linear-gradient(135deg, #16a34a 0%, #0891b2 100%);
+            --gradient-3: linear-gradient(135deg, #ea580c 0%, #db2777 100%);
+            --gradient-4: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
+            --gradient-sapphire: linear-gradient(135deg, #0F52BA 0%, #1565C0 50%, #1976D2 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            padding: 36px 0 20px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 5px 16px;
+            background: rgba(15,82,186,0.08);
+            border: 1px solid rgba(15,82,186,0.25);
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--accent-sapphire);
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 span {
+            background: var(--gradient-sapphire);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 17px;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* ========== STATS BAR ========== */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            padding: 20px 0 24px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 16px 10px;
+            background: var(--bg-primary);
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+        }
+
+        .stat-item:nth-child(1)::before { background: var(--gradient-sapphire); }
+        .stat-item:nth-child(2)::before { background: var(--gradient-2); }
+        .stat-item:nth-child(3)::before { background: var(--gradient-1); }
+        .stat-item:nth-child(4)::before { background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%); }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 2px;
+        }
+
+        .stat-item:nth-child(1) .stat-value { color: var(--accent-sapphire); }
+        .stat-item:nth-child(2) .stat-value { color: var(--accent-green); }
+        .stat-item:nth-child(3) .stat-value { color: var(--accent-blue); }
+        .stat-item:nth-child(4) .stat-value { color: var(--accent-red); }
+
+        .stat-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+        }
+
+        /* ========== SECTIONS ========== */
+        .section {
+            padding: 14px 0;
+        }
+
+        .section h2 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .section h2 span {
+            background: var(--gradient-sapphire);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section p, .section li {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .section p { margin-bottom: 8px; }
+
+        .section strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* ========== HIGHLIGHT BOX ========== */
+        .highlight-box {
+            background: rgba(15,82,186,0.05);
+            border-left: 4px solid var(--accent-sapphire);
+            padding: 14px 18px;
+            border-radius: 0 10px 10px 0;
+            margin: 12px 0;
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .highlight-box strong { color: var(--accent-sapphire); }
+
+        /* ========== THREE PILLARS ========== */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .pillar-card {
+            background: var(--bg-primary);
+            border-radius: 14px;
+            padding: 18px;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pillar-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+        }
+
+        .pillar-card:nth-child(1)::before { background: var(--gradient-sapphire); }
+        .pillar-card:nth-child(2)::before { background: var(--gradient-2); }
+        .pillar-card:nth-child(3)::before { background: var(--gradient-1); }
+
+        .pillar-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .pillar-card:nth-child(1) .pillar-num { background: var(--accent-sapphire); }
+        .pillar-card:nth-child(2) .pillar-num { background: var(--accent-green); }
+        .pillar-card:nth-child(3) .pillar-num { background: var(--accent-blue); }
+
+        .pillar-card h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+
+        .pillar-card p {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* ========== DUAL GRID ========== */
+        .dual-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .dual-card {
+            background: var(--bg-primary);
+            border-radius: 14px;
+            padding: 18px;
+            border: 1px solid var(--border);
+        }
+
+        .dual-card h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .dual-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .dual-card ul li {
+            padding: 3px 0 3px 16px;
+            position: relative;
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .dual-card ul li::before {
+            content: '\2192';
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+        }
+
+        .dual-card:nth-child(1) ul li::before { color: var(--accent-sapphire); }
+        .dual-card:nth-child(2) ul li::before { color: var(--accent-blue); }
+
+        /* ========== ALERT BOX ========== */
+        .alert-box {
+            background: rgba(37,99,235,0.04);
+            border: 1px solid rgba(37,99,235,0.15);
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin: 14px 0;
+        }
+
+        .alert-box h4 {
+            color: var(--accent-blue);
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .alert-box p {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        /* ========== REASON / WHY ========== */
+        .reason-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .reason-card {
+            background: var(--bg-primary);
+            border-radius: 14px;
+            padding: 18px;
+            border: 1px solid var(--border);
+        }
+
+        .reason-card:first-child {
+            border-left: 3px solid var(--accent-red);
+        }
+
+        .reason-card:first-child h4 {
+            color: var(--accent-red);
+        }
+
+        .reason-card h4 {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+
+        .reason-card p {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* ========== QUESTION BOX ========== */
+        .question-box {
+            background: rgba(220,38,38,0.04);
+            border: 1px solid rgba(220,38,38,0.18);
+            border-radius: 14px;
+            padding: 20px 24px;
+            text-align: center;
+            margin: 16px 0;
+        }
+
+        .question-box p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        .question-box strong {
+            color: var(--accent-red);
+            font-weight: 700;
+        }
+
+        /* ========== COST TABLE ========== */
+        .cost-section {
+            padding: 10px 0 0;
+        }
+
+        .cost-section h2 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .cost-section h2 span {
+            background: var(--gradient-sapphire);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cost-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: var(--bg-primary);
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin-bottom: 12px;
+        }
+
+        .cost-table thead th {
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--text-muted);
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cost-table tbody td {
+            padding: 11px 16px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .cost-table tbody tr:last-child td { border-bottom: none; }
+
+        .cost-table tbody td:first-child {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .cost-table tbody td:last-child {
+            font-weight: 700;
+        }
+
+        .cost-highlight {
+            color: var(--accent-sapphire);
+        }
+
+        .cost-sub-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: var(--bg-primary);
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .cost-sub-table thead th {
+            padding: 10px 16px;
+            text-align: left;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--text-muted);
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cost-sub-table tbody td {
+            padding: 9px 16px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cost-sub-table tbody tr:last-child td { border-bottom: none; }
+
+        .cost-sub-table tbody td:first-child {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .cost-sub-table .total-row td {
+            background: rgba(15,82,186,0.05);
+            font-weight: 700;
+            color: var(--accent-sapphire);
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            text-align: center;
+            padding: 18px 0;
+            border-top: 1px solid var(--border);
+            margin-top: 10px;
+        }
+
+        .footer p {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* ========== SUMMARY TAGS ========== */
+        .summary-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            border: 1px solid;
+        }
+
+        .tag.sapphire { background: rgba(15,82,186,0.06); border-color: rgba(15,82,186,0.2); color: var(--accent-sapphire); }
+        .tag.blue { background: rgba(37,99,235,0.06); border-color: rgba(37,99,235,0.2); color: var(--accent-blue); }
+        .tag.green { background: rgba(22,163,74,0.06); border-color: rgba(22,163,74,0.2); color: var(--accent-green); }
+
+        /* ========== PAGE BREAK ========== */
+        .page-break {
+            page-break-before: always;
+            break-before: page;
+            padding-top: 30px;
+        }
+
+        /* ========== PRINT ========== */
+        @media print {
+            body {
+                background: #ffffff !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .container { padding: 0 16px; }
+            .pillar-card, .dual-card, .reason-card, .stat-item, .alert-box, .question-box {
+                break-inside: avoid;
+            }
+        }
+
+        @page {
+            size: A4;
+            margin: 12mm 15mm;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ======================== HERO ======================== -->
+        <section class="hero">
+            <div class="hero-badge">Proposta &bull; Family Office Digital</div>
+            <h1>COFO &mdash; <span>Crypto Offshore<br>Family Office</span></h1>
+            <p class="hero-subtitle">Uma forma moderna de proteger e controlar seu dinheiro</p>
+        </section>
+
+        <!-- ======================== STATS ======================== -->
+        <section class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Controle Direto</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">24/7</div>
+                <div class="stat-label">Acesso Global</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">0</div>
+                <div class="stat-label">Intermediários</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">Multi</div>
+                <div class="stat-label">Jurisdições</div>
+            </div>
+        </section>
+
+        <!-- ======================== IDEIA PRINCIPAL ======================== -->
+        <section class="section">
+            <h2>A <span>Ideia Principal</span></h2>
+            <p>Hoje, a maior parte do dinheiro das pessoas depende de bancos. O problema: <strong>bancos podem bloquear contas, limitar acessos ou impor regras unilateralmente.</strong></p>
+            <div class="highlight-box">
+                <strong>O COFO propõe algo diferente:</strong> você passa a ter controle direto do seu patrimônio, usando uma combinação de <strong>empresas no exterior</strong>, <strong>tecnologia cripto</strong> e <strong>menor dependência de bancos</strong>.
+            </div>
+        </section>
+
+        <!-- ======================== COMO FUNCIONA ======================== -->
+        <section class="section">
+            <h2>Como <span>Funciona</span></h2>
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <div class="pillar-num">1</div>
+                    <h4>Estrutura Legal</h4>
+                    <p>Uma empresa fora do país organiza seus investimentos. Oferece estrutura e segurança jurídica para o patrimônio.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-num">2</div>
+                    <h4>Sistema Financeiro</h4>
+                    <p>Você ainda usa bancos, mas apenas quando necessário. Eles deixam de ser o centro do seu dinheiro.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-num">3</div>
+                    <h4>Carteiras Digitais</h4>
+                    <p>A principal mudança: o dinheiro fica em carteiras digitais sob seu controle. Sem intermediários.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================== ORGANIZACAO + DISTRIBUICAO ======================== -->
+        <section class="section">
+            <div class="dual-grid">
+                <div class="dual-card">
+                    <h4>Como o Dinheiro é Organizado</h4>
+                    <ul>
+                        <li><strong>Reserva</strong> &mdash; dinheiro guardado (longo prazo)</li>
+                        <li><strong>Movimentação</strong> &mdash; para transferências</li>
+                        <li><strong>Operações</strong> &mdash; para investimentos</li>
+                        <li><strong>Interface bancária</strong> &mdash; entrada e saída</li>
+                    </ul>
+                </div>
+                <div class="dual-card">
+                    <h4>Como o Patrimônio é Distribuído</h4>
+                    <ul>
+                        <li><strong>Base segura</strong> &mdash; proteção do capital</li>
+                        <li><strong>Crescimento</strong> &mdash; maior risco, maior retorno</li>
+                        <li><strong>Renda</strong> &mdash; geração de fluxo</li>
+                        <li><strong>Ativos reais</strong> &mdash; imóveis e outros</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 8px; text-align: center;">Diversificação reduz risco e aumenta segurança. Equilíbrio entre proteção e crescimento.</p>
+        </section>
+
+        <!-- ======================== POR QUE + BANCOS ======================== -->
+        <section class="section">
+            <h2>Por Que Isso <span>Existe</span></h2>
+            <div class="reason-grid">
+                <div class="reason-card">
+                    <h4>O Problema Real</h4>
+                    <p>Já aconteceram casos reais de contas bloqueadas, acessos negados e restrições de movimentação. O problema não é legalidade &mdash; <strong>é o controle da infraestrutura financeira.</strong></p>
+                </div>
+                <div class="reason-card">
+                    <h4>E os Bancos?</h4>
+                    <p>Eles continuam existindo, mas mudam de papel: <strong>deixam de controlar seu dinheiro</strong> e passam a ser apenas uma ferramenta de interface quando necessário.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================== ALERT - CRIPTO ======================== -->
+        <div class="alert-box">
+            <h4>Já tem cripto? Você está em posição privilegiada.</h4>
+            <p>Mas precisa organizar bem: evitar movimentações grandes sem planejamento e manter coerência nas operações. Sem estrutura, cripto pode virar um problema em vez de solução.</p>
+        </div>
+
+        <!-- ======================== RESUMO + PERGUNTA ======================== -->
+        <section class="section">
+            <h2>Resumo <span>Final</span></h2>
+            <p>Não é sobre "investir em cripto". É sobre ter uma <strong>infraestrutura própria</strong> para seu patrimônio.</p>
+            <div class="summary-tags">
+                <span class="tag sapphire">Controle real do patrimônio</span>
+                <span class="tag blue">Redução de riscos externos</span>
+                <span class="tag green">Liberdade global de movimentação</span>
+            </div>
+        </section>
+
+        <div class="question-box">
+            <p>Se amanhã você precisar acessar todo o seu dinheiro:<br><strong>ele está realmente sob seu controle&hellip; ou depende de alguém?</strong></p>
+        </div>
+
+        <!-- ======================== PAGE 2 - CUSTOS ======================== -->
+        <section class="cost-section page-break">
+            <h2>Investimento &mdash; <span>Custos</span></h2>
+
+            <table class="cost-table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Swap / Câmbio</td>
+                        <td>Conversão Fiduciário &rarr; Web3 Cripto</td>
+                        <td class="cost-highlight" style="color: var(--accent-red);">7,5%</td>
+                    </tr>
+                    <tr>
+                        <td>Setup + Treinamento</td>
+                        <td>Configuração completa + capacitação operacional</td>
+                        <td class="cost-highlight">R$ 65.000</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4 style="font-size: 15px; font-weight: 700; margin: 18px 0 10px; color: var(--text-primary);">Estrutura Offshore <span style="font-size: 12px; font-weight: 500; color: var(--text-muted);">(estimativa)</span></h4>
+
+            <table class="cost-sub-table">
+                <thead>
+                    <tr>
+                        <th>Jurisdição</th>
+                        <th>Setup</th>
+                        <th>Custo Anual</th>
+                        <th>Observação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Panamá</td>
+                        <td>US$ 4.000 &ndash; 7.000</td>
+                        <td>US$ 3.500 &ndash; 6.000</td>
+                        <td style="font-size: 11px; color: var(--text-muted);">&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td>El Salvador</td>
+                        <td>US$ 4.000 &ndash; 8.000</td>
+                        <td>US$ 3.000 &ndash; 6.000</td>
+                        <td style="font-size: 11px; color: var(--text-muted);">Conta bancária variável</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td>Total Consolidado</td>
+                        <td>US$ 8.000 &ndash; 15.000</td>
+                        <td>US$ 6.500 &ndash; 12.000</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- ======================== NA PRATICA ======================== -->
+            <section class="section" style="padding-top: 24px;">
+                <h2>Na <span>Prática</span></h2>
+                <div class="pillars-grid">
+                    <div class="pillar-card">
+                        <div class="pillar-num">1</div>
+                        <h4>Estrutura Legal Internacional</h4>
+                        <p>Constituição de empresas em jurisdições estratégicas (Panamá e/ou El Salvador).</p>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-num">2</div>
+                        <h4>Carteiras Digitais Seguras</h4>
+                        <p>Configuração de wallets com protocolos de segurança e backup adequados.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-num">3</div>
+                        <h4>Regras de Operação</h4>
+                        <p>Definição de regras claras de uso, movimentação e governança do patrimônio.</p>
+                    </div>
+                </div>
+            </section>
+
+        </section>
+
+        <!-- ======================== FOOTER ======================== -->
+        <footer class="footer">
+            <p>COFO &mdash; Crypto Offshore Family Office &bull; Documento confidencial &bull; 2026</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
