@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AFOS-Crypto — Protocolos Técnicos</title>
+
+    <!-- Open Graph / Link Preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://andrefelipe-afos.github.io/cofo-proposta/protocolos-tecnicos.html">
+    <meta property="og:title" content="AFOS-Crypto — Protocolos Técnicos">
+    <meta property="og:description" content="Tesouraria Patrimonial Digital. Protocolos técnicos, ferramentas e estrutura operacional para custódia soberana e proteção de capital.">
+    <meta property="og:image" content="https://andrefelipe-afos.github.io/cofo-proposta/og-image-protocolos.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="pt_BR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AFOS-Crypto — Protocolos Técnicos">
+    <meta name="twitter:description" content="Protocolos técnicos, ferramentas e estrutura operacional para custódia soberana.">
+    <meta name="twitter:image" content="https://andrefelipe-afos.github.io/cofo-proposta/og-image-protocolos.png">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fb;
+            --accent-sapphire: #0F52BA;
+            --accent-red: #DC2626;
+            --accent-green: #16a34a;
+            --accent-cyan: #0891b2;
+            --accent-purple: #7c3aed;
+            --accent-orange: #ea580c;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --gradient-sapphire: linear-gradient(135deg, #0F52BA 0%, #1565C0 50%, #1976D2 100%);
+            --gradient-red: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
+            --gradient-green: linear-gradient(135deg, #16a34a 0%, #0891b2 100%);
+            --gradient-purple: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+        /* ========== HERO ========== */
+        .hero { padding: 28px 0 14px; text-align: center; }
+        .hero-badge {
+            display: inline-block; padding: 5px 16px;
+            background: rgba(15,82,186,0.08); border: 1px solid rgba(15,82,186,0.25);
+            border-radius: 50px; font-size: 10px; font-weight: 700;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            color: var(--accent-sapphire); margin-bottom: 12px;
+        }
+        .hero h1 { font-size: 34px; font-weight: 900; line-height: 1.1; margin-bottom: 6px; }
+        .hero h1 span {
+            background: var(--gradient-sapphire);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero-subtitle { font-size: 14px; color: var(--text-secondary); font-weight: 400; }
+
+        /* ========== STATS BAR ========== */
+        .stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 14px 0 18px; }
+        .stat-item {
+            text-align: center; padding: 12px 8px;
+            background: var(--bg-primary); border-radius: 12px;
+            border: 1px solid var(--border); position: relative; overflow: hidden;
+        }
+        .stat-item::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+        .stat-item:nth-child(1)::before { background: var(--gradient-sapphire); }
+        .stat-item:nth-child(2)::before { background: var(--gradient-green); }
+        .stat-item:nth-child(3)::before { background: var(--gradient-red); }
+        .stat-value { font-size: 12px; font-weight: 800; margin-bottom: 1px; }
+        .stat-item:nth-child(1) .stat-value { color: var(--accent-sapphire); }
+        .stat-item:nth-child(2) .stat-value { color: var(--accent-green); }
+        .stat-item:nth-child(3) .stat-value { color: var(--accent-red); }
+        .stat-label { font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 600; }
+
+        /* ========== SECTIONS ========== */
+        .section { padding: 8px 0; }
+        .section h2 { font-size: 18px; font-weight: 800; margin-bottom: 7px; }
+        .section h2 span {
+            background: var(--gradient-sapphire);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .section p, .section li { font-size: 11px; color: var(--text-secondary); line-height: 1.55; }
+        .section p { margin-bottom: 5px; }
+        .section strong { color: var(--text-primary); font-weight: 600; }
+
+        /* ========== HIGHLIGHT BOXES ========== */
+        .highlight-box {
+            background: rgba(15,82,186,0.04); border-left: 3px solid var(--accent-sapphire);
+            padding: 10px 14px; border-radius: 0 10px 10px 0; margin: 8px 0;
+            font-size: 11px; color: var(--text-secondary); line-height: 1.6;
+        }
+        .highlight-box strong { color: var(--accent-sapphire); }
+        .highlight-box-red {
+            background: rgba(220,38,38,0.04); border-left: 3px solid var(--accent-red);
+            padding: 10px 14px; border-radius: 0 10px 10px 0; margin: 8px 0;
+            font-size: 11px; color: var(--text-secondary); line-height: 1.6;
+        }
+        .highlight-box-red strong { color: var(--accent-red); }
+
+        /* ========== GRIDS ========== */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 7px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 7px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 7px; }
+
+        /* ========== CARDS ========== */
+        .card {
+            background: var(--bg-primary); border-radius: 11px; padding: 12px;
+            border: 1px solid var(--border); position: relative; overflow: hidden;
+        }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+        .card h4 { font-size: 11px; font-weight: 700; margin-bottom: 4px; color: var(--text-primary); }
+        .card p { font-size: 10px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 0; }
+        .card ul { list-style: none; padding: 0; }
+        .card ul li {
+            padding: 1.5px 0 1.5px 13px; position: relative;
+            font-size: 10px; color: var(--text-secondary); line-height: 1.5;
+        }
+        .card ul li::before {
+            content: '\2192'; position: absolute; left: 0;
+            color: var(--accent-sapphire); font-weight: 700; font-size: 9px;
+        }
+
+        .card.sapphire::before { background: var(--gradient-sapphire); }
+        .card.green::before { background: var(--gradient-green); }
+        .card.red::before { background: var(--gradient-red); }
+        .card.purple::before { background: var(--gradient-purple); }
+
+        .card.sapphire h4 { color: var(--accent-sapphire); }
+        .card.green h4 { color: var(--accent-green); }
+        .card.red h4 { color: var(--accent-red); }
+        .card.purple h4 { color: var(--accent-purple); }
+
+        /* ========== PILLAR NUM ========== */
+        .pn {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 22px; height: 22px; border-radius: 6px;
+            font-size: 10px; font-weight: 800; color: white; margin-bottom: 5px;
+        }
+        .pn.s { background: var(--accent-sapphire); }
+        .pn.g { background: var(--accent-green); }
+        .pn.r { background: var(--accent-red); }
+        .pn.p { background: var(--accent-purple); }
+        .pn.c { background: var(--accent-cyan); }
+        .pn.o { background: var(--accent-orange); }
+
+        /* ========== TAGS ========== */
+        .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
+        .tag {
+            display: inline-flex; align-items: center; padding: 3px 9px;
+            border-radius: 6px; font-size: 9px; font-weight: 600; border: 1px solid;
+        }
+        .tag.s { background: rgba(15,82,186,0.06); border-color: rgba(15,82,186,0.2); color: var(--accent-sapphire); }
+        .tag.g { background: rgba(22,163,74,0.06); border-color: rgba(22,163,74,0.2); color: var(--accent-green); }
+        .tag.r { background: rgba(220,38,38,0.06); border-color: rgba(220,38,38,0.2); color: var(--accent-red); }
+        .tag.p { background: rgba(124,58,237,0.06); border-color: rgba(124,58,237,0.2); color: var(--accent-purple); }
+        .tag.c { background: rgba(8,145,178,0.06); border-color: rgba(8,145,178,0.2); color: var(--accent-cyan); }
+        .tag.o { background: rgba(234,88,12,0.06); border-color: rgba(234,88,12,0.2); color: var(--accent-orange); }
+
+        /* ========== QUESTION BOX ========== */
+        .question-box {
+            background: rgba(220,38,38,0.04); border: 1px solid rgba(220,38,38,0.18);
+            border-radius: 12px; padding: 12px 16px; text-align: center; margin: 10px 0;
+        }
+        .question-box p { font-size: 11.5px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0; }
+        .question-box strong { color: var(--accent-red); font-weight: 700; }
+
+        /* ========== ALERT ========== */
+        .alert-box {
+            background: rgba(220,38,38,0.04); border: 1px solid rgba(220,38,38,0.18);
+            border-radius: 12px; padding: 10px 14px; margin: 8px 0;
+        }
+        .alert-box h4 { color: var(--accent-red); font-size: 11px; font-weight: 700; margin-bottom: 3px; }
+        .alert-box p { font-size: 10px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 0; }
+
+        /* ========== TOOL TAG (inline protocol names) ========== */
+        .tool {
+            display: inline-block; padding: 1px 6px; border-radius: 4px;
+            font-size: 9.5px; font-weight: 600; background: rgba(15,82,186,0.06);
+            color: var(--accent-sapphire); border: 1px solid rgba(15,82,186,0.15);
+        }
+
+        /* ========== FOOTER ========== */
+        .footer { text-align: center; padding: 12px 0; border-top: 1px solid var(--border); margin-top: 6px; }
+        .footer p { font-size: 10px; color: var(--text-muted); }
+
+        /* ========== PAGE BREAK ========== */
+        .page-break { page-break-before: always; break-before: page; padding-top: 22px; }
+
+        /* ========== PRINT ========== */
+        @media print {
+            body { background: #fff !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .container { padding: 0 12px; }
+            .card, .stat-item, .alert-box, .question-box { break-inside: avoid; }
+        }
+        @page { size: A4; margin: 9mm 13mm; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- ======================= PAGE 1 — TESOURARIA PATRIMONIAL DIGITAL ======================= -->
+
+    <section class="hero">
+        <div class="hero-badge">AFOS-Crypto &bull; Protocolos Técnicos</div>
+        <h1><span>Tesouraria Patrimonial<br>Digital</span></h1>
+        <p class="hero-subtitle">A infraestrutura de capital da nova economia</p>
+    </section>
+
+    <section class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-value">Tesouraria Patrimonial Digital</div>
+            <div class="stat-label">Custódia soberana</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">SETUP — Treinamento + Consultoria</div>
+            <div class="stat-label">Tesouraria Web3</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">COFO</div>
+            <div class="stat-label">Crypto Offshore Family Office</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Uma <span>pergunta direta</span></h2>
+        <div class="highlight-box-red">
+            <strong>Se amanhã seu banco decidir suspender temporariamente sua conta,</strong> quanto do seu patrimônio continuaria imediatamente acessível? Sem autorização. Sem intermediários. Sem necessidade de justificativa.
+        </div>
+        <p>A maioria das pessoas bem-sucedidas descobre tarde demais que existe uma diferença fundamental entre <strong>riqueza</strong> e <strong>soberania patrimonial</strong>. Você pode possuir ativos relevantes — e ainda assim depender completamente da permissão de terceiros para acessá-los: bancos, plataformas financeiras, corretoras, infraestruturas de pagamento.</p>
+    </section>
+
+    <section class="section">
+        <h2>Isso já <span>aconteceu</span> — repetidamente</h2>
+        <div class="grid-3">
+            <div class="card red">
+                <h4>Congelamento direto</h4>
+                <ul>
+                    <li>Contas congeladas no Canadá durante protestos</li>
+                    <li>Confisco bancário em Chipre</li>
+                </ul>
+            </div>
+            <div class="card red">
+                <h4>Controle cambial</h4>
+                <ul>
+                    <li>Controles de capital na Argentina</li>
+                    <li>Restrição cambial na Turquia</li>
+                </ul>
+            </div>
+            <div class="card red">
+                <h4>Pressão regulatória</h4>
+                <ul>
+                    <li>Crescente nos EUA e União Europeia</li>
+                    <li>Dinheiro legal — mas não acessível</li>
+                </ul>
+            </div>
+        </div>
+        <p style="margin-top: 6px;">O padrão é o mesmo: o controle da infraestrutura financeira não estava nas mãos dos proprietários.</p>
+    </section>
+
+    <section class="section">
+        <h2>A nova camada de <span>proteção</span></h2>
+        <p>Estruturas tradicionais (holdings, trusts, diversificação geográfica) continuam relevantes. Mas não resolvem a <strong>dependência tecnológica da infraestrutura financeira centralizada</strong>.</p>
+        <div class="highlight-box">
+            <strong>Decentralized Treasury on Distributed Ledger Technologies:</strong> uma infraestrutura onde a custódia do capital pertence diretamente ao proprietário. Sem intermediários obrigatórios. Sem dependência estrutural de bancos ou instituições financeiras. Um tesouro patrimonial digital soberano, operando em redes descentralizadas globais.
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>O papel do <span>Treasury Advisor</span></h2>
+        <div class="grid-2">
+            <div class="card sapphire">
+                <h4>Responsabilidades do Advisor</h4>
+                <ul>
+                    <li>Arquitetura segura de custódia digital</li>
+                    <li>Redundância patrimonial tecnológica</li>
+                    <li>Distribuição estratégica de chaves</li>
+                    <li>Proteção contra rastreabilidade indesejada</li>
+                    <li>Governança de ativos digitais</li>
+                </ul>
+                <p style="margin-top: 4px; font-size: 10px;"><strong>O objetivo não é especulação. É engenharia patrimonial digital.</strong></p>
+            </div>
+            <div class="card green">
+                <h4>Funcionalidades desbloqueadas</h4>
+                <ul>
+                    <li><strong>Custódia direta</strong> — sem bloqueio administrativo</li>
+                    <li><strong>Transferência global</strong> — em minutos, sem fronteiras</li>
+                    <li><strong>Liquidez descentralizada</strong> — troca direta entre ativos</li>
+                    <li><strong>Crédito descentralizado</strong> — colateral digital</li>
+                    <li><strong>Pools de liquidez</strong> — remuneração por fornecimento</li>
+                    <li><strong>Stablecoins</strong> — camada monetária digital estável</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Segurança <span>institucional</span></h2>
+        <div class="grid-4">
+            <div class="card sapphire">
+                <h4>Multi-assinatura</h4>
+                <p>Múltiplas autorizações criptográficas por transação.</p>
+            </div>
+            <div class="card green">
+                <h4>Segregação</h4>
+                <p>Cofres, operacionais e liquidez separados.</p>
+            </div>
+            <div class="card purple">
+                <h4>Cold Storage</h4>
+                <p>Chaves offline protegidas contra ataques.</p>
+            </div>
+            <div class="card red">
+                <h4>Distribuição geográfica</h4>
+                <p>Fragmentação física para redundância.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="question-box">
+        <p>Seu patrimônio depende apenas do sistema financeiro tradicional...<br><strong>ou já possui uma infraestrutura soberana de proteção digital?</strong></p>
+    </div>
+
+    <!-- ======================= PAGE 2 — SETUP WEB3 ======================= -->
+
+    <section class="section page-break">
+        <div class="hero" style="padding: 18px 0 10px;">
+            <div class="hero-badge">SETUP &bull; Treinamento + Consultoria Privada</div>
+            <h1 style="font-size: 30px;"><span>Tesouraria Web3</span> — Protocolos</h1>
+            <p class="hero-subtitle">Decentralized Treasury Advisory on DLT (Blockchain)</p>
+        </div>
+
+        <div class="grid-2" style="margin-top: 2px;">
+            <div class="card sapphire">
+                <h4>Formato</h4>
+                <ul>
+                    <li><strong>Categoria:</strong> Private Wealth Advisory (nível family office)</li>
+                    <li><strong>Formato:</strong> Híbrido (treinamento + implementação assistida)</li>
+                    <li><strong>Duração:</strong> ~2 semanas</li>
+                    <li><strong>Entrega:</strong> Infraestrutura funcional + playbook + governança</li>
+                </ul>
+            </div>
+            <div class="card green">
+                <h4>Foco real — não é sobre "cripto"</h4>
+                <ul>
+                    <li>Infraestrutura de custódia de tesouraria digital</li>
+                    <li>Sistema de movimentação privada de capital</li>
+                    <li>Estrutura antifrágil contra restrições estatais</li>
+                    <li>Independência do sistema bancário tradicional</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Estrutura do <span>Programa</span> — 11 Módulos</h2>
+
+        <div class="grid-2" style="margin-top: 5px;">
+            <div>
+                <div class="card sapphire" style="margin-bottom: 6px;">
+                    <h4>M1 — Base de Privacidade Digital</h4>
+                    <ul>
+                        <li><strong>VPN:</strong> <span class="tool">ClearVPN</span> — oculta IP, primeira camada de anonimização</li>
+                        <li><strong>Navegação:</strong> <span class="tool">Brave</span> — bloqueio nativo de trackers, evita fingerprinting</li>
+                        <li><strong>Comunicação:</strong> <span class="tool">Signal</span> — mensagens efêmeras, criptografia forte</li>
+                        <li><strong>E-mail:</strong> <span class="tool">Proton Mail</span> — identidade digital privada</li>
+                    </ul>
+                </div>
+                <div class="card sapphire" style="margin-bottom: 6px;">
+                    <h4>M2 — Fundamentos Blockchain e Ativos</h4>
+                    <ul>
+                        <li><strong>Redes:</strong> <span class="tool">Bitcoin</span> <span class="tool">Ethereum</span> <span class="tool">Solana</span> <span class="tool">BNB</span> <span class="tool">TRON</span> <span class="tool">XRP</span></li>
+                        <li><strong>Stablecoins:</strong> <span class="tool">Tether</span> <span class="tool">USDC</span> <span class="tool">DAI</span></li>
+                        <li>DAI = descentralizado (operacionalidade e fundamentos)</li>
+                    </ul>
+                </div>
+                <div class="card sapphire" style="margin-bottom: 6px;">
+                    <h4>M3 — Custódia de Tesouro Digital (Core)</h4>
+                    <ul>
+                        <li><strong>Hardware:</strong> <span class="tool">Trezor</span> + <span class="tool">Trezor Suite</span> | <span class="tool">Ledger</span> + <span class="tool">Ledger Live</span></li>
+                        <li>Controle absoluto das chaves + contas ocultas + segregação</li>
+                        <li>Primeiro fluxo: recebimento → distribuição → fragmentação</li>
+                    </ul>
+                </div>
+                <div class="card sapphire" style="margin-bottom: 6px;">
+                    <h4>M4 — Infraestrutura Bitcoin Avançada</h4>
+                    <ul>
+                        <li><strong>Lightning:</strong> <span class="tool">Wallet of Satoshi</span></li>
+                        <li><strong>Liquid L2:</strong> <span class="tool">Liquid Network</span> <span class="tool">Aqua Wallet</span> <span class="tool">Satsails</span> <span class="tool">LiquidX.Pro</span></li>
+                        <li>Velocidade + confidencialidade + PIX bridge (DePix)</li>
+                    </ul>
+                </div>
+                <div class="card green" style="margin-bottom: 6px;">
+                    <h4>M5 — On/Off-Ramp e Pagamentos</h4>
+                    <ul>
+                        <li><strong>Cartões:</strong> <span class="tool">Ether.fi</span> <span class="tool">REDOTPAY</span> <span class="tool">Payy Network</span> <span class="tool">Haven</span></li>
+                        <li><strong>DePix:</strong> <span class="tool">Crypix.me</span> <span class="tool">PixGo</span></li>
+                        <li><strong>Exchange sem KYC:</strong> <span class="tool">HTX</span></li>
+                    </ul>
+                </div>
+                <div class="card green">
+                    <h4>M6 — Wallets Web3</h4>
+                    <ul>
+                        <li><span class="tool">MetaMask</span> <span class="tool">Rabby Wallet</span> <span class="tool">Phantom</span></li>
+                        <li>Interação com protocolos DeFi e dApps</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <div class="card purple" style="margin-bottom: 6px;">
+                    <h4>M7 — DeFi Operacional</h4>
+                    <ul>
+                        <li><strong>DEX:</strong> <span class="tool">Uniswap</span> <span class="tool">CowSwap</span> <span class="tool">SunSwap (TRON)</span></li>
+                        <li><strong>Lending:</strong> <span class="tool">Aave</span> <span class="tool">Kamino (Solana)</span></li>
+                        <li><strong>Simulação:</strong> <span class="tool">DeFiSim.xyz</span> — treinar sem risco</li>
+                    </ul>
+                </div>
+                <div class="card purple" style="margin-bottom: 6px;">
+                    <h4>M8 — Trading e Liquidez Avançada</h4>
+                    <ul>
+                        <li><strong>Derivativos:</strong> <span class="tool">Hyperliquid</span> — hedge e alavancagem</li>
+                        <li><strong>Bridge:</strong> <span class="tool">SideShift.ai</span> — mover capital entre redes</li>
+                    </ul>
+                </div>
+                <div class="card purple" style="margin-bottom: 6px;">
+                    <h4>M9 — Inteligência e Monitoramento</h4>
+                    <ul>
+                        <li><strong>Analytics:</strong> <span class="tool">Arkham</span> <span class="tool">Debank</span></li>
+                        <li>Rastrear carteiras, riscos e fluxos on-chain</li>
+                    </ul>
+                </div>
+                <div class="card red" style="margin-bottom: 6px;">
+                    <h4>M10 — Segurança Institucional</h4>
+                    <ul>
+                        <li><strong>MultiSig:</strong> <span class="tool">Safe Wallet</span> <span class="tool">TronLink</span></li>
+                        <li><strong>Criptografia:</strong> SHA-256 (fundamentos Bitcoin)</li>
+                        <li><strong>Privacidade:</strong> <span class="tool">Zcash</span> (conceitos e fundamentos)</li>
+                    </ul>
+                </div>
+                <div class="card red" style="margin-bottom: 6px;">
+                    <h4>M11 — Conceitos e Fundamentos</h4>
+                    <ul>
+                        <li><strong>DAOs</strong> — governança descentralizada</li>
+                        <li><strong>ZKP / ZK Rollup</strong> — privacidade + escalabilidade</li>
+                        <li><strong>NFTs</strong> — estratégias fiscais e patrimoniais</li>
+                    </ul>
+                </div>
+                <div class="card sapphire">
+                    <h4>Entregáveis operacionais</h4>
+                    <ul>
+                        <li>Setup completo (ambiente + wallets + segurança)</li>
+                        <li>Estrutura multi-camadas de custódia</li>
+                        <li>Playbook de movimentação</li>
+                        <li>Estratégia de privacidade</li>
+                        <li>Mapa de risco operacional</li>
+                        <li>Governança MultiSig</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Modelo da <span>Assessoria</span></h2>
+        <div class="grid-4">
+            <div class="card sapphire">
+                <div class="pn s">1</div>
+                <h4>Diagnóstico</h4>
+                <ul>
+                    <li>Exposição patrimonial</li>
+                    <li>Risco geopolítico</li>
+                    <li>Dependência bancária</li>
+                </ul>
+            </div>
+            <div class="card green">
+                <div class="pn g">2</div>
+                <h4>Setup</h4>
+                <ul>
+                    <li>Instalação completa</li>
+                    <li>Treinamento guiado</li>
+                    <li>Primeiros fluxos reais</li>
+                </ul>
+            </div>
+            <div class="card purple">
+                <div class="pn p">3</div>
+                <h4>Operação Assistida</h4>
+                <ul>
+                    <li>Movimentação real</li>
+                    <li>Ajustes finos</li>
+                    <li>Blindagem de segurança</li>
+                </ul>
+            </div>
+            <div class="card red">
+                <div class="pn r">4</div>
+                <h4>Governança (contínuo)</h4>
+                <ul>
+                    <li>MultiSig</li>
+                    <li>Distribuição de chaves</li>
+                    <li>Redundância geográfica</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="highlight-box-red" style="text-align: center;">
+        <strong>Insight Final:</strong> esse SETUP equivale a offshore + private banking + custódia internacional. <strong>Só que o mais importante ponto: não depende de ninguém.</strong>
+    </div>
+
+    <!-- ======================= PAGE 3 — COFO ESTRUTURA ======================= -->
+
+    <section class="section page-break">
+        <div class="hero" style="padding: 18px 0 10px;">
+            <div class="hero-badge">COFO &bull; Crypto Offshore Family Office</div>
+            <h1 style="font-size: 30px;">COFO — <span>Estrutura</span></h1>
+            <p class="hero-subtitle">Blindagem jurídica + arquitetura descentralizada + compliance mínimo inteligente</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Estrutura completa — <span>4 Camadas</span></h2>
+        <div class="grid-4">
+            <div class="card sapphire">
+                <div class="pn s">1</div>
+                <h4>Holding Base — Panamá</h4>
+                <ul>
+                    <li>Controle jurídico</li>
+                    <li>Veículo de investimento</li>
+                    <li>Sem alto fluxo direto</li>
+                </ul>
+            </div>
+            <div class="card green">
+                <div class="pn g">2</div>
+                <h4>Operacional — El Salvador</h4>
+                <ul>
+                    <li>Ponte fiat ↔ cripto</li>
+                    <li>Eventual exposição bancária</li>
+                    <li>Bitcoin = legal tender</li>
+                </ul>
+            </div>
+            <div class="card purple">
+                <div class="pn p">3</div>
+                <h4>Cripto Nativo</h4>
+                <ul>
+                    <li>Wallets multi-chain</li>
+                    <li>Custódia descentralizada</li>
+                    <li><strong>Core do patrimônio</strong></li>
+                </ul>
+            </div>
+            <div class="card red">
+                <div class="pn r">4</div>
+                <h4>Ativos Reais</h4>
+                <ul>
+                    <li>Imóveis (via SPEs)</li>
+                    <li>Participações</li>
+                    <li>Veículos tokenizados</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Arquitetura de <span>Wallets</span> (nível fundo)</h2>
+        <div class="grid-4">
+            <div class="card sapphire">
+                <h4>1. Vault</h4>
+                <p>Cold wallet (hardware). Sem interação frequente. Long-term holdings.</p>
+            </div>
+            <div class="card green">
+                <h4>2. Treasury</h4>
+                <p>Movimentação controlada. Usada para alocação estratégica.</p>
+            </div>
+            <div class="card purple">
+                <h4>3. Execution</h4>
+                <p>Interação com DeFi/mercado. Sempre com limites definidos.</p>
+            </div>
+            <div class="card red">
+                <h4>4. Buffer</h4>
+                <p>Interface com fiat. Única que toca sistema bancário.</p>
+            </div>
+        </div>
+        <div class="tags">
+            <span class="tag s">Multi-sig (2/3 ou 3/5)</span>
+            <span class="tag g">Separação geográfica de chaves</span>
+            <span class="tag p">Hardware wallets distintas</span>
+            <span class="tag r">Sem concentração de risco</span>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Estratégia de <span>Alocação</span></h2>
+        <div class="grid-4">
+            <div class="card sapphire">
+                <h4>Core (40–60%)</h4>
+                <ul>
+                    <li><span class="tool">BTC</span> <span class="tool">ETH</span></li>
+                    <li>Stablecoins diversificadas</li>
+                </ul>
+            </div>
+            <div class="card green">
+                <h4>Growth (20–40%)</h4>
+                <ul>
+                    <li>AI tokens</li>
+                    <li>Infra Web3, L1/L2</li>
+                </ul>
+            </div>
+            <div class="card purple">
+                <h4>Yield (10–25%)</h4>
+                <ul>
+                    <li>Staking, Lending</li>
+                    <li>RWAs</li>
+                </ul>
+            </div>
+            <div class="card red">
+                <h4>Real Assets (10–20%)</h4>
+                <ul>
+                    <li>Imóveis</li>
+                    <li>Proteção inflacionária</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Defesa patrimonial — <span>Cenários reais</span></h2>
+        <div class="grid-3">
+            <div class="card red">
+                <h4>Banco bloqueia conta</h4>
+                <ul>
+                    <li>Múltiplas jurisdições</li>
+                    <li>Não concentrar liquidez fiat</li>
+                    <li>Rampas alternativas prontas</li>
+                </ul>
+            </div>
+            <div class="card red">
+                <h4>Pressão regulatória</h4>
+                <ul>
+                    <li>PF ≠ empresa ≠ wallets</li>
+                    <li>Documentação de origem</li>
+                    <li>Separação clara</li>
+                </ul>
+            </div>
+            <div class="card red">
+                <h4>Liquidez emergencial</h4>
+                <ul>
+                    <li>Stablecoins prontas</li>
+                    <li>Off-ramps já testadas</li>
+                    <li>Limites distribuídos</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="grid-2">
+            <div class="card sapphire">
+                <h4>Relação com bancos (baixa exposição)</h4>
+                <p>Não eliminar — torná-los <strong>periféricos</strong>.</p>
+                <ul>
+                    <li>1 banco principal: <span class="tool">Towerbank</span> (base regional)</li>
+                    <li>1 ponte cripto: <span class="tool">FV Bank</span></li>
+                    <li>1 opcional: <span class="tool">Mercury</span> (com cautela)</li>
+                </ul>
+            </div>
+            <div class="card green">
+                <h4>Playbook operacional</h4>
+                <ul>
+                    <li><strong>Entrada:</strong> converter gradualmente, evitar picos</li>
+                    <li><strong>Saída:</strong> via empresa ou conversão controlada</li>
+                    <li><strong>Regra de ouro:</strong> consistência > invisibilidade</li>
+                    <li>Sempre com coerência documental</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Checklist — <span>Execução</span></h2>
+        <div class="grid-4">
+            <div class="card sapphire">
+                <div class="pn s">1</div>
+                <h4>Estrutura base</h4>
+                <p>~1–2 semanas</p>
+                <ul>
+                    <li>S.A. Panamá</li>
+                    <li>Agente registrado</li>
+                    <li>Objeto social correto</li>
+                </ul>
+            </div>
+            <div class="card green">
+                <div class="pn g">2</div>
+                <h4>Camada internacional</h4>
+                <p>~2–4 semanas</p>
+                <ul>
+                    <li>Estrutura El Salvador</li>
+                    <li>Conta bancária</li>
+                    <li>Rampas fiat validadas</li>
+                </ul>
+            </div>
+            <div class="card purple">
+                <div class="pn p">3</div>
+                <h4>Infra cripto</h4>
+                <p>Imediato</p>
+                <ul>
+                    <li>Multi-wallet</li>
+                    <li>Multi-sig</li>
+                    <li>Política de uso</li>
+                </ul>
+            </div>
+            <div class="card red">
+                <div class="pn r">4</div>
+                <h4>Governança</h4>
+                <p>Contínuo</p>
+                <ul>
+                    <li>Política de movimentação</li>
+                    <li>Registro de operações</li>
+                    <li>Plano de contingência</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="alert-box">
+        <h4>Ponto crítico — Capital em hard wallet sem histórico bancário</h4>
+        <p>Se for converter para fiat → precisa narrativa coerente. Evite movimentações abruptas. Estruture entrada gradual e lógica.</p>
+    </div>
+
+    <div class="question-box">
+        <p><strong>Você está no melhor cenário possível:</strong> capital já fora do sistema, flexibilidade total, sem passivo regulatório inicial.<br>
+        <strong>Quanto do seu patrimônio depende da autorização de terceiros?</strong></p>
+    </div>
+
+    <footer class="footer">
+        <p>AFOS-Crypto &mdash; Protocolos Técnicos &bull; Documento confidencial &bull; 2026</p>
+    </footer>
+
+</div>
+</body>
+</html>
